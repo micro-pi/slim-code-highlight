@@ -1,0 +1,19 @@
+/*
+ * Slim Code Highlight — small layout fixes on top of the chosen Prism.js
+ * theme, which only styles the code block itself, not its spacing in the
+ * surrounding post.
+ *
+ * Loaded only on a singular post/page whose content has a <pre> block
+ * (see SCH_Frontend::enqueue_assets()), never sitewide.
+ */
+
+pre[class*="language-"] {
+	margin: 1.5em 0;
+	max-width: 100%;
+}
+
+/* Keep a long unbroken line scrollable within the block instead of
+ * overflowing the page on narrow screens. */
+pre[class*="language-"].line-numbers {
+	overflow: auto;
+}

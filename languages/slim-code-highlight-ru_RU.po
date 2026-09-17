@@ -1,0 +1,95 @@
+# Copyright (C) 2026 MicroPi
+# This file is distributed under the GPL v2 or later.
+msgid ""
+msgstr ""
+"Project-Id-Version: Slim Code Highlight 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/slim-code-highlight\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: Russian\n"
+"Language: ru_RU\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-09-17T12:06:29+00:00\n"
+"PO-Revision-Date: 2026-09-17T12:06:29+00:00\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: slim-code-highlight\n"
+
+#. Plugin Name of the plugin
+#: slim-code-highlight.php
+#: includes/class-sch-settings.php:30
+#: includes/class-sch-settings.php:74
+msgid "Slim Code Highlight"
+msgstr "Slim Code Highlight"
+
+#. Plugin URI of the plugin
+#: slim-code-highlight.php
+msgid "https://github.com/micro-pi/slim-code-highlight"
+msgstr "https://github.com/micro-pi/slim-code-highlight"
+
+#. Description of the plugin
+#: slim-code-highlight.php
+msgid "Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js. No bloat."
+msgstr "Подсвечивает синтаксис в блоках <pre> с помощью Prism.js — включая старую разметку lang:xxx decode:true, оставшуюся от предыдущего плагина подсветки. Никакого лишнего веса."
+
+#. Author of the plugin
+#: slim-code-highlight.php
+msgid "MicroPi"
+msgstr "MicroPi"
+
+#. Author URI of the plugin
+#: slim-code-highlight.php
+msgid "https://micro-pi.ru"
+msgstr "https://micro-pi.ru"
+
+#: includes/class-sch-settings.php:31
+msgid "Code Highlight"
+msgstr "Подсветка кода"
+
+#: includes/class-sch-settings.php:75
+msgid "Syntax-highlights code inside <pre> blocks with Prism.js, including the old lang:xxx decode:true markup left over from a previous highlighter plugin."
+msgstr "Подсвечивает синтаксис кода внутри блоков <pre> с помощью Prism.js, включая старую разметку lang:xxx decode:true, оставшуюся от предыдущего плагина подсветки."
+
+#: includes/class-sch-settings.php:81
+msgid "Show on"
+msgstr "Показывать в"
+
+#: includes/class-sch-settings.php:85
+msgid "Posts"
+msgstr "Записях"
+
+#: includes/class-sch-settings.php:89
+msgid "Pages"
+msgstr "Страницах"
+
+#: includes/class-sch-settings.php:94
+msgid "Theme"
+msgstr "Тема"
+
+#: includes/class-sch-settings.php:104
+msgid "Extras"
+msgstr "Дополнительно"
+
+#: includes/class-sch-settings.php:108
+msgid "Line numbers"
+msgstr "Номера строк"
+
+#: includes/class-sch-settings.php:112
+msgid "Copy-to-clipboard button"
+msgstr "Кнопка копирования в буфер обмена"
+
+#: includes/class-sch-settings.php:117
+msgid "Unmarked blocks"
+msgstr "Неразмеченные блоки"
+
+#: includes/class-sch-settings.php:121
+msgid "Also apply to <pre> blocks with no language class"
+msgstr "Применять также к блокам <pre> без класса языка"
+
+#: includes/class-sch-settings.php:123
+msgid "Off by default: a <pre> block with no class could be genuinely non-code preformatted text, not a code sample."
+msgstr "По умолчанию выключено: блок <pre> без класса может быть обычным предварительно отформатированным текстом, а не примером кода."
+
+#: slim-code-highlight.php:83
+msgid "Settings"
+msgstr "Настройки"
