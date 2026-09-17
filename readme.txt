@@ -1,7 +1,7 @@
 === Slim Code Highlight ===
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.0.0
+Version: 1.1.0
 License: GPL v2 or later
 
 Syntax-highlights code inside `<pre>` blocks with Prism.js — including
@@ -20,6 +20,7 @@ content edits needed. One library only. No bloat.
 * Optional line numbers and a copy-to-clipboard button (Prism's own
   official plugins)
 * 8 built-in Prism themes to choose from
+* Font size, as a percentage of the theme's own size (100% / 90% / 80% / 70%)
 * Every language Prism supports works with zero configuration — its
   own autoloader plugin fetches only the language grammars (and their
   dependencies) actually found on the current page
@@ -59,6 +60,14 @@ content edits needed. One library only. No bloat.
   default** ("Also apply to `<pre>` blocks with no language class",
   off by default) since it could be genuine non-code preformatted text
   (ASCII art, a quoted log excerpt) rather than a missed code sample.
+* **The font-size override only targets the outer `<pre>`, not also its
+  `<code>` child.** The Prism theme's own CSS sets a font-size on both;
+  applying the same percentage to both independently would compound
+  instead of applying once (`<code>` is nested inside `<pre>`, so 80% on
+  both means the effective size is 80% of 80% = 64%, not 80%) — caught
+  live (a real page loaded 10.88px instead of the intended 13.6px)
+  before shipping. `<code>` inherits the resolved size from `<pre>` on
+  its own, so only `<pre>` needs the rule.
 * **A block that already has a proper `<code class="language-xxx">`
   inside its `<pre>`** (hand-written, or from a block editor code
   block) is left completely alone — only the enclosing `<pre>` gets the

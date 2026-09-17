@@ -20,6 +20,14 @@ class SCH_Settings {
 		'twilight'       => 'Twilight',
 	);
 
+	/** Font size offered in the dropdown, as a percentage of the theme's own size. */
+	const FONT_SIZES = array(
+		100 => 'Theme default',
+		90  => 'Small (90%)',
+		80  => 'Smaller (80%)',
+		70  => 'Smallest (70%)',
+	);
+
 	public function __construct() {
 		add_action( 'admin_menu', array( $this, 'add_menu' ) );
 		add_action( 'admin_init', array( $this, 'register_settings' ) );
@@ -53,6 +61,11 @@ class SCH_Settings {
 			'sanitize_callback' => array( __CLASS__, 'sanitize_theme' ),
 			'default'           => 'okaidia',
 		) );
+		register_setting( 'sch_settings', 'sch_font_size', array(
+			'type'              => 'integer',
+			'sanitize_callback' => array( __CLASS__, 'sanitize_font_size' ),
+			'default'           => 100,
+		) );
 	}
 
 	/**
@@ -61,6 +74,15 @@ class SCH_Settings {
 	 */
 	public static function sanitize_theme( $theme ) {
 		return isset( self::THEMES[ $theme ] ) ? $theme : 'okaidia';
+	}
+
+	/**
+	 * @param mixed $size
+	 * @return int A valid key of self::FONT_SIZES.
+	 */
+	public static function sanitize_font_size( $size ) {
+		$size = (int) $size;
+		return isset( self::FONT_SIZES[ $size ] ) ? $size : 100;
 	}
 
 	public function render() {
@@ -96,6 +118,16 @@ class SCH_Settings {
 							<select name="sch_theme" id="sch_theme">
 								<?php foreach ( self::THEMES as $key => $label ) : ?>
 									<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $options['theme'], $key ); ?>><?php echo esc_html( $label ); ?></option>
+								<?php endforeach; ?>
+							</select>
+						</td>
+					</tr>
+					<tr>
+						<th scope="row"><label for="sch_font_size"><?php esc_html_e( 'Font size', 'slim-code-highlight' ); ?></label></th>
+						<td>
+							<select name="sch_font_size" id="sch_font_size">
+								<?php foreach ( self::FONT_SIZES as $key => $label ) : ?>
+									<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $options['font_size'], $key ); ?>><?php echo esc_html( $label ); ?></option>
 								<?php endforeach; ?>
 							</select>
 						</td>

@@ -3,7 +3,7 @@
  * Plugin Name: Slim Code Highlight
  * Plugin URI:  https://github.com/micro-pi/slim-code-highlight
  * Description: Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js. No bloat.
- * Version:     1.0.0
+ * Version:     1.1.0
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Author:      MicroPi
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCH_VERSION', '1.0.0' );
+define( 'SCH_VERSION', '1.1.0' );
 define( 'SCH_FILE', __FILE__ );
 define( 'SCH_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SCH_URL', plugin_dir_url( __FILE__ ) );
@@ -39,6 +39,9 @@ function sch_get_options() {
 		'show_post'    => (bool) get_option( 'sch_show_post', true ),
 		'show_page'    => (bool) get_option( 'sch_show_page', true ),
 		'theme'        => (string) get_option( 'sch_theme', 'okaidia' ),
+		// A percentage of the chosen theme's own font size — 100 means
+		// "don't override it at all" (no inline style is emitted).
+		'font_size'    => (int) get_option( 'sch_font_size', 100 ),
 		'line_numbers' => (bool) get_option( 'sch_line_numbers', true ),
 		'copy_button'  => (bool) get_option( 'sch_copy_button', true ),
 		// Off by default: a <pre> with no recognized class could be

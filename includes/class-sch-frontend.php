@@ -215,5 +215,21 @@ class SCH_Frontend {
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
 		wp_enqueue_style( 'slim-code-highlight', SCH_URL . "assets/style{$suffix}.css", array( 'sch-prism-theme' ), SCH_VERSION );
+
+		// 100 means "theme default" — no override needed, so nothing is
+		// added to the page in that (default) case. Only the outer <pre>
+		// is targeted, not also its <code> child: the theme's own CSS
+		// sets font-size on both, and since <code> is nested inside
+		// <pre>, setting the same percentage on both would compound
+		// (e.g. 80% of 80% = 64%) instead of applying once. <code>
+		// inherits the resolved size from <pre> on its own. Loads after
+		// the theme (this handle depends on sch-prism-theme), so plain
+		// cascade order is enough — no !important needed.
+		if ( 100 !== $options['font_size'] ) {
+			wp_add_inline_style(
+				'slim-code-highlight',
+				'pre[class*="language-"] { font-size: ' . (int) $options['font_size'] . '%; }'
+			);
+		}
 	}
 }

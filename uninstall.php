@@ -8,6 +8,7 @@ $options = array(
 	'sch_show_post',
 	'sch_show_page',
 	'sch_theme',
+	'sch_font_size',
 	'sch_line_numbers',
 	'sch_copy_button',
 	'sch_plain_pre',
