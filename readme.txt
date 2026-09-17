@@ -1,7 +1,7 @@
 === Slim Code Highlight ===
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.1.0
+Version: 1.2.0
 License: GPL v2 or later
 
 Syntax-highlights code inside `<pre>` blocks with Prism.js — including
@@ -21,6 +21,9 @@ content edits needed. One library only. No bloat.
   official plugins)
 * 8 built-in Prism themes to choose from
 * Font size, as a percentage of the theme's own size (100% / 90% / 80% / 70%)
+* Settings screen includes a supported-languages reference table and
+  copy-pasteable usage examples for both the old `lang:xxx` markup and
+  modern Prism `<code class="language-xxx">` markup
 * Every language Prism supports works with zero configuration — its
   own autoloader plugin fetches only the language grammars (and their
   dependencies) actually found on the current page
@@ -75,6 +78,12 @@ content edits needed. One library only. No bloat.
   Numbers plugin reads it from there.
 * Registered on `the_content` at priority 20, after wpautop and
   `do_shortcode` have finished, so it sees the final `<pre>` markup.
+* **The settings-screen reference table shows both the old-style
+  `lang:xxx` token and the modern Prism id side by side per language**,
+  since the two differ for a handful of entries (`c++` vs `cpp`,
+  `html`/`xhtml` vs `markup`) and are identical for the rest — rather
+  than picking one convention and leaving the reader to guess whether
+  it also applies to the other markup style.
 
 == Installation ==
 

@@ -3,7 +3,7 @@
  * Plugin Name: Slim Code Highlight
  * Plugin URI:  https://github.com/micro-pi/slim-code-highlight
  * Description: Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js. No bloat.
- * Version:     1.1.0
+ * Version:     1.2.0
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Author:      MicroPi
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCH_VERSION', '1.1.0' );
+define( 'SCH_VERSION', '1.2.0' );
 define( 'SCH_FILE', __FILE__ );
 define( 'SCH_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SCH_URL', plugin_dir_url( __FILE__ ) );
