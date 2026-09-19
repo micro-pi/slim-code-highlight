@@ -2,7 +2,7 @@
 # This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
-"Project-Id-Version: Slim Code Highlight 1.1.0\n"
+"Project-Id-Version: Slim Code Highlight 1.3.0\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/slim-code-highlight\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian\n"
@@ -29,8 +29,8 @@ msgstr "https://github.com/micro-pi/slim-code-highlight"
 
 #. Description of the plugin
 #: slim-code-highlight.php
-msgid "Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js. No bloat."
-msgstr "Подсвечивает синтаксис в блоках <pre> с помощью Prism.js — включая старую разметку lang:xxx decode:true, оставшуюся от предыдущего плагина подсветки. Никакого лишнего веса."
+msgid "Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js, plus a block-editor Code block with a language picker and a live preview. No bloat."
+msgstr "Подсвечивает синтаксис в блоках <pre> с помощью Prism.js — включая старую разметку lang:xxx decode:true, оставшуюся от предыдущего плагина подсветки — плюс блок «Код» для блочного редактора с выбором языка и live-предпросмотром. Никакого лишнего веса."
 
 #. Author of the plugin
 #: slim-code-highlight.php
@@ -139,6 +139,8 @@ msgid "Use either the old-style token (after lang:) or the modern id (after lang
 msgstr "Используйте либо старый токен (после lang:), либо современный идентификатор (после language- в классе <code>) — оба варианта работают. Это не полный список: любой язык, поддерживаемый Prism.js, работает точно так же, даже если его нет в этой таблице — см. ссылку ниже."
 
 #: includes/class-sch-settings.php:226
+#: assets/editor.js:62
+#: assets/editor.js:107
 msgid "Language"
 msgstr "Язык"
 
@@ -156,6 +158,38 @@ msgstr "Современный: language-xxx"
 msgid "Full list of every supported language: %s"
 msgstr "Полный список всех поддерживаемых языков: %s"
 
-#: slim-code-highlight.php:86
+#: slim-code-highlight.php:91
 msgid "Settings"
 msgstr "Настройки"
+
+#: assets/editor.js:39
+msgid "Other…"
+msgstr "Другой…"
+
+#: assets/editor.js:72
+msgid "Prism language id"
+msgstr "Идентификатор языка Prism"
+
+#: assets/editor.js:73
+msgid "Any id from prismjs.com/#supported-languages, e.g. \"kotlin\" or \"dockerfile\"."
+msgstr "Любой идентификатор с prismjs.com/#supported-languages, например «kotlin» или «dockerfile»."
+
+#: assets/editor.js:83
+msgid "Code (Slim Highlight)"
+msgstr "Код (Slim Highlight)"
+
+#: assets/editor.js:84
+msgid "A code block with a language picker and a live Prism.js preview."
+msgstr "Блок кода с выбором языка и live-предпросмотром на Prism.js."
+
+#: assets/editor.js:125
+msgid "Paste or type your code…"
+msgstr "Вставьте или введите код…"
+
+#: assets/editor.js:126
+msgid "Code"
+msgstr "Код"
+
+#: assets/editor.js:128
+msgid "Preview"
+msgstr "Предпросмотр"

@@ -2,8 +2,8 @@
 /**
  * Plugin Name: Slim Code Highlight
  * Plugin URI:  https://github.com/micro-pi/slim-code-highlight
- * Description: Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js. No bloat.
- * Version:     1.2.0
+ * Description: Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js, plus a block-editor Code block with a language picker and a live preview. No bloat.
+ * Version:     1.3.0
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Author:      MicroPi
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCH_VERSION', '1.2.0' );
+define( 'SCH_VERSION', '1.3.0' );
 define( 'SCH_FILE', __FILE__ );
 define( 'SCH_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SCH_URL', plugin_dir_url( __FILE__ ) );
@@ -53,13 +53,18 @@ function sch_get_options() {
 
 require_once SCH_PATH . 'includes/class-sch-frontend.php';
 require_once SCH_PATH . 'includes/class-sch-settings.php';
+require_once SCH_PATH . 'includes/class-sch-block.php';
 
 /**
  * Boot the plugin. SCH_Frontend runs on every front-end request; the
- * settings screen only loads in wp-admin.
+ * settings screen only loads in wp-admin. SCH_Block registers the block
+ * type on `init`, which fires on both — needed on the front end too, so
+ * the saved block markup renders correctly there (block registration,
+ * unlike its editor script/style, isn't wp-admin-only).
  */
 function sch_init() {
 	new SCH_Frontend();
+	new SCH_Block();
 
 	if ( is_admin() ) {
 		new SCH_Settings();
