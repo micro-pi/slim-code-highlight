@@ -9,6 +9,25 @@
 	margin-bottom: 8px;
 }
 
+.sch-block-section {
+	margin-top: 10px;
+}
+
+.sch-block-section summary {
+	cursor: pointer;
+	padding: 4px 0;
+	font-size: 12px;
+	font-weight: 600;
+	text-transform: uppercase;
+	color: #757575;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.sch-block-section summary:focus {
+	outline-offset: 2px;
+}
+
 .sch-block-input {
 	display: block;
 	width: 100%;
@@ -23,14 +42,6 @@
 	white-space: pre;
 	overflow: auto;
 	resize: vertical;
-}
-
-.sch-block-preview-label {
-	margin: 10px 0 4px;
-	font-size: 12px;
-	font-weight: 600;
-	text-transform: uppercase;
-	color: #757575;
 }
 
 .sch-block-preview-pre {

@@ -94,11 +94,19 @@
 			var blockProps = useBlockProps( { className: 'sch-block' } );
 			var previewRef = useRef( null );
 
+			var languageClass = 'language-' + ( attributes.language || 'none' );
+
 			useEffect( function () {
 				if ( ! previewRef.current || ! window.Prism ) {
 					return;
 				}
-				previewRef.current.className = 'sch-block-preview-code language-' + ( attributes.language || 'none' );
+				// Prism's own theme CSS keys its background/base text
+				// color off `pre[class*="language-"]` — the *outer* <pre>,
+				// not just the <code> — so without this the preview
+				// showed token colors (meant to sit on the theme's own
+				// dark background) over a plain white box instead: pale,
+				// low-contrast, and not what Settings > Code Highlight
+				// actually renders on the front end.
 				window.Prism.highlightElement( previewRef.current );
 			}, [ attributes.content, attributes.language ] );
 
@@ -118,16 +126,21 @@
 							onChange: function ( value ) { setAttributes( { language: value } ); },
 						} )
 					),
-					el( PlainText, {
-						className: 'sch-block-input',
-						value: attributes.content,
-						onChange: function ( value ) { setAttributes( { content: value } ); },
-						placeholder: __( 'Paste or type your code…', 'slim-code-highlight' ),
-						'aria-label': __( 'Code', 'slim-code-highlight' ),
-					} ),
-					el( 'p', { className: 'sch-block-preview-label' }, __( 'Preview', 'slim-code-highlight' ) ),
-					el( 'pre', { className: 'sch-block-preview-pre' },
-						el( 'code', { ref: previewRef }, attributes.content )
+					el( 'details', { className: 'sch-block-section', open: true },
+						el( 'summary', {}, __( 'Code', 'slim-code-highlight' ) ),
+						el( PlainText, {
+							className: 'sch-block-input',
+							value: attributes.content,
+							onChange: function ( value ) { setAttributes( { content: value } ); },
+							placeholder: __( 'Paste or type your code…', 'slim-code-highlight' ),
+							'aria-label': __( 'Code', 'slim-code-highlight' ),
+						} )
+					),
+					el( 'details', { className: 'sch-block-section', open: true },
+						el( 'summary', {}, __( 'Preview', 'slim-code-highlight' ) ),
+						el( 'pre', { className: 'sch-block-preview-pre ' + languageClass },
+							el( 'code', { ref: previewRef, className: languageClass }, attributes.content )
+						)
 					)
 				)
 			);

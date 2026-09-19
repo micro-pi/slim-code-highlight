@@ -1,7 +1,7 @@
 === Slim Code Highlight ===
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.3.0
+Version: 1.3.1
 License: GPL v2 or later
 
 Syntax-highlights code inside `<pre>` blocks with Prism.js — including
@@ -15,6 +15,9 @@ content edits needed. One library only. No bloat.
   from a dropdown (or type any Prism-supported id), paste or type code,
   and see it syntax-highlighted right there in the editor — no more
   switching to the Code/Text tab to write a code block
+* The block's preview matches the theme chosen on Settings > Code
+  Highlight, and its "Code"/"Preview" sections fold open and closed by
+  clicking their label — handy once a post has several code blocks
 * Recognizes this site's old `lang:xxx decode:true` `<pre>` classes
   (java, c, c++, arduino, python, ruby, applescript, xhtml, and more)
   and rewrites them to Prism.js's `<pre><code class="language-xxx">`
@@ -118,6 +121,24 @@ content edits needed. One library only. No bloat.
   whose language isn't in that list, reveals a plain text field instead
   — any of Prism's 300+ supported ids works, not just the ~19 curated
   ones, matching what the autoloader could already load on the front end.
+* **The preview's outer `&lt;pre&gt;` needs the `language-xxx` class too, not
+  just the inner `&lt;code&gt;`.** A Prism theme's dark background is set by a
+  rule keyed to `pre[class*="language-"]` specifically (checked directly
+  against the Okaidia theme's own CSS: `pre[class*="language-"]{background:
+  #272822}`) — separate from the `code[class*="language-"]{color:#f8f8f2}`
+  rule that supplies the light token text color. The block's first version
+  only added the language class to the `&lt;code&gt;` element, so the dark
+  background rule never matched: light-colored text meant to sit on a dark
+  background was rendering on the plain editor background instead —
+  technically "highlighted" but washed out and illegible. The saved
+  markup itself was never affected (`SCH_Frontend`'s transform already
+  added the class to the front-end `&lt;pre&gt;` at render time), only the
+  in-editor live preview.
+* **The "Code"/"Preview" sections are native `&lt;details&gt;`/`&lt;summary&gt;`
+  elements, not a custom collapse component.** The browser owns the
+  open/closed state entirely — no click handler, no state variable, and
+  because the `open` prop passed to them never changes across re-renders,
+  React never fights a manual toggle by resetting it back.
 * **Block registration happens on `init`, unconditionally** (not gated
   behind `is_admin()`) — the block type itself must be registered on
   every request, front end included, for WordPress to correctly parse
