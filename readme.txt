@@ -1,7 +1,7 @@
 === Slim Code Highlight ===
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.3.1
+Version: 1.4.0
 License: GPL v2 or later
 
 Syntax-highlights code inside `<pre>` blocks with Prism.js — including
