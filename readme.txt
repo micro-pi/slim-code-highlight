@@ -1,7 +1,7 @@
 === Slim Code Highlight ===
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.4.0
+Version: 1.4.1
 License: GPL v2 or later
 
 Syntax-highlights code inside `<pre>` blocks with Prism.js — including
@@ -146,6 +146,23 @@ content edits needed. One library only. No bloat.
   its editor script/style are wp-admin-only; enqueued automatically by
   WordPress core off the block type's declared `editor_script` /
   `editor_style`, not a separate manual enqueue call.
+
+* **The block treats its code as plain text, not HTML.** Its `content`
+  attribute is read with `source: 'text'` (not `'html'`), so the editor
+  shows what was typed (`<-`) instead of its escaped form (`&lt;-`), and
+  `save()` escapes `&`, `<` and `>` itself instead of leaving it to
+  WordPress's serializer, which skips an ampersand that already looks
+  like an entity. Without that, code containing the text `&amp;` or
+  `&lt;` (HTML and escaping tutorials) would not come back unchanged.
+  The saved markup for ordinary code is identical to before, so existing
+  posts keep working.
+* **The editor preview checks its own contrast.** A dark Prism theme such
+  as Okaidia is light text on a dark background, but the editor (or the
+  active theme's editor styles, e.g. a pale `pre` background) can override
+  that background and leave light text on light gray. The preview measures
+  the contrast between the text and the background it actually got and,
+  only when it is too low, gives the preview a suitable dark or light
+  background. Left alone whenever the theme's own colors are readable.
 
 == Installation ==
 

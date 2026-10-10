@@ -86,7 +86,7 @@ class SCH_Block {
 				),
 				'content'  => array(
 					'type'     => 'string',
-					'source'   => 'html',
+					'source'   => 'text',
 					'selector' => 'code',
 					'default'  => '',
 				),
