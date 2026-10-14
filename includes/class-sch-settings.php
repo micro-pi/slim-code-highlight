@@ -105,6 +105,16 @@ class SCH_Settings {
 			'sanitize_callback' => array( __CLASS__, 'sanitize_theme' ),
 			'default'           => 'okaidia',
 		) );
+		register_setting( 'sch_settings', 'sch_max_lines', array(
+			'type'              => 'integer',
+			'sanitize_callback' => array( __CLASS__, 'sanitize_max_lines' ),
+			'default'           => 0,
+		) );
+		register_setting( 'sch_settings', 'sch_long_mode', array(
+			'type'              => 'string',
+			'sanitize_callback' => array( __CLASS__, 'sanitize_long_mode' ),
+			'default'           => 'collapse',
+		) );
 		register_setting( 'sch_settings', 'sch_font_size', array(
 			'type'              => 'integer',
 			'sanitize_callback' => array( __CLASS__, 'sanitize_font_size' ),
@@ -127,6 +137,26 @@ class SCH_Settings {
 	public static function sanitize_font_size( $size ) {
 		$size = (int) $size;
 		return isset( self::FONT_SIZES[ $size ] ) ? $size : 100;
+	}
+
+	/**
+	 * @param mixed $lines
+	 * @return int 0 (off), or a number of lines from 5 to 500.
+	 */
+	public static function sanitize_max_lines( $lines ) {
+		$lines = absint( $lines );
+		if ( 0 === $lines ) {
+			return 0;
+		}
+		return max( 5, min( 500, $lines ) );
+	}
+
+	/**
+	 * @param mixed $mode
+	 * @return string 'collapse' or 'scroll'.
+	 */
+	public static function sanitize_long_mode( $mode ) {
+		return 'scroll' === $mode ? 'scroll' : 'collapse';
 	}
 
 	public function render() {
@@ -175,6 +205,24 @@ class SCH_Settings {
 										<option value="<?php echo esc_attr( $key ); ?>" <?php selected( $options['font_size'], $key ); ?>><?php echo esc_html( $label ); ?></option>
 									<?php endforeach; ?>
 								</select>
+							</td>
+						</tr>
+						<tr>
+							<th scope="row"><label for="sch_max_lines"><?php esc_html_e( 'Long blocks', 'slim-code-highlight' ); ?></label></th>
+							<td>
+								<input type="number" id="sch_max_lines" name="sch_max_lines" min="0" max="500" class="small-text" value="<?php echo esc_attr( $options['max_lines'] ); ?>">
+								<?php esc_html_e( 'lines shown, then:', 'slim-code-highlight' ); ?>
+								<p class="slim-checks">
+									<label>
+										<input type="radio" name="sch_long_mode" value="collapse" <?php checked( $options['long_mode'], 'collapse' ); ?>>
+										<?php esc_html_e( 'a "Show all" button opens the rest', 'slim-code-highlight' ); ?>
+									</label>
+									<label>
+										<input type="radio" name="sch_long_mode" value="scroll" <?php checked( $options['long_mode'], 'scroll' ); ?>>
+										<?php esc_html_e( 'the block scrolls inside itself', 'slim-code-highlight' ); ?>
+									</label>
+								</p>
+								<p class="description"><?php esc_html_e( 'A block with more lines than this is cut to that many lines. 0 shows every block in full. A block is only cut when it would hide at least 5 lines.', 'slim-code-highlight' ); ?></p>
 							</td>
 						</tr>
 						<tr>

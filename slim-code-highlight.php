@@ -3,7 +3,7 @@
  * Plugin Name: Slim Code Highlight
  * Plugin URI:  https://github.com/micro-pi/slim-code-highlight
  * Description: Syntax-highlights <pre> code blocks (including the old lang:xxx decode:true markup left over from a previous highlighter plugin) using Prism.js, plus a block-editor Code block with a language picker and a live preview. No bloat.
- * Version:     1.4.1
+ * Version:     1.5.1
  * Requires at least: 5.9
  * Requires PHP: 7.4
  * Author:      MicroPi
@@ -19,7 +19,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-define( 'SCH_VERSION', '1.4.1' );
+define( 'SCH_VERSION', '1.5.1' );
 define( 'SCH_FILE', __FILE__ );
 define( 'SCH_PATH', plugin_dir_path( __FILE__ ) );
 define( 'SCH_URL', plugin_dir_url( __FILE__ ) );
@@ -48,6 +48,11 @@ function sch_get_options() {
 		// genuinely non-code preformatted text (ASCII art, a quoted log
 		// snippet, etc.) — only opt it in deliberately.
 		'plain_pre'    => (bool) get_option( 'sch_plain_pre', false ),
+		// 0 means "show every block in full"; above 0, a block with clearly
+		// more lines than this shows only that many until its button is clicked.
+		'max_lines'    => (int) get_option( 'sch_max_lines', 0 ),
+		// 'collapse' (a "Show all" button) or 'scroll' (the block scrolls inside itself).
+		'long_mode'    => 'scroll' === get_option( 'sch_long_mode', 'collapse' ) ? 'scroll' : 'collapse',
 	);
 }
 

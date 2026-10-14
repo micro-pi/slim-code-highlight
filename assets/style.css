@@ -17,3 +17,64 @@ pre[class*="language-"] {
 pre[class*="language-"].line-numbers {
 	overflow: auto;
 }
+
+/*
+ * Long blocks (Settings > Code Highlight > Long blocks). Before the script
+ * runs, or without it, a long block is cut at roughly the chosen number of
+ * lines and scrolls inside itself; assets/collapse.js then measures the exact
+ * height, fades the cut edge and adds the "Show all" button. 1.5em per line is
+ * the line height of the Prism themes; 2em covers the block's padding.
+ */
+pre.sch-long {
+	max-height: calc(var(--sch-lines) * 1.5em + 2em);
+	overflow: auto;
+}
+
+/* The button sits right under the block, so the block's own bottom margin
+ * is smaller there. */
+pre.sch-collapsible {
+	margin-bottom: 0.5em;
+}
+
+pre.sch-long.sch-collapsed {
+	overflow: hidden;
+	position: relative;
+}
+
+pre.sch-long.sch-collapsed::after {
+	content: "";
+	position: absolute;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 3em;
+	background: linear-gradient(to bottom, transparent, var(--sch-bg, #272822));
+	pointer-events: none;
+}
+
+/* Explicit colors in every state: themes style button:hover with their own
+ * text and background colors, and one of the two ends up matching ours
+ * (white text on a light button). The doubled class outranks them. */
+.sch-toggle.sch-toggle {
+	display: block;
+	margin: 0 0 1.5em;
+	padding: 0.35em 0.9em;
+	border: 1px solid #333;
+	border-radius: 3px;
+	background: #fff;
+	color: #333;
+	font: inherit;
+	font-size: 0.9em;
+	cursor: pointer;
+}
+
+.sch-toggle.sch-toggle:hover,
+.sch-toggle.sch-toggle:focus-visible {
+	background: #333;
+	border-color: #333;
+	color: #fff;
+}
+
+.sch-toggle[hidden] {
+	display: none;
+}

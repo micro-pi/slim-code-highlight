@@ -1,24 +1,20 @@
-# Copyright (C) 2026 MicroPi
-# This file is distributed under the GPL v2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: Slim Code Highlight 1.3.1\n"
 "Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/slim-code-highlight\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: Russian\n"
-"Language: ru_RU\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "POT-Creation-Date: 2026-09-17T12:26:56+00:00\n"
 "PO-Revision-Date: 2026-09-17T12:26:56+00:00\n"
+"Language: ru_RU\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: slim-code-highlight\n"
 
 #. Plugin Name of the plugin
 #: slim-code-highlight.php
-#: includes/class-sch-settings.php:68
-#: includes/class-sch-settings.php:126
 msgid "Slim Code Highlight"
 msgstr "Slim Code Highlight"
 
@@ -42,155 +38,187 @@ msgstr "MicroPi"
 msgid "https://micro-pi.ru"
 msgstr "https://micro-pi.ru"
 
-#: includes/class-sch-settings.php:69
+#: includes/class-sch-settings.php:82
+#: includes/class-sch-settings.php:83
+#: includes/class-sch-settings.php:170
 msgid "Code Highlight"
 msgstr "Подсветка кода"
 
-#: includes/class-sch-settings.php:127
+#: includes/class-sch-settings.php:171
 msgid "Syntax-highlights code inside <pre> blocks with Prism.js, including the old lang:xxx decode:true markup left over from a previous highlighter plugin."
 msgstr "Подсвечивает синтаксис кода внутри блоков <pre> с помощью Prism.js, включая старую разметку lang:xxx decode:true, оставшуюся от предыдущего плагина подсветки."
 
-#: includes/class-sch-settings.php:133
+#: includes/class-sch-settings.php:178
 msgid "Show on"
 msgstr "Показывать в"
 
-#: includes/class-sch-settings.php:137
+#: includes/class-sch-settings.php:182
 msgid "Posts"
 msgstr "Записях"
 
-#: includes/class-sch-settings.php:141
+#: includes/class-sch-settings.php:186
 msgid "Pages"
 msgstr "Страницах"
 
-#: includes/class-sch-settings.php:146
+#: includes/class-sch-settings.php:191
 msgid "Theme"
 msgstr "Тема"
 
-#: includes/class-sch-settings.php:156
+#: includes/class-sch-settings.php:201
 msgid "Font size"
 msgstr "Размер шрифта"
 
-#: includes/class-sch-settings.php:166
+#: includes/class-sch-settings.php:229
 msgid "Extras"
 msgstr "Дополнительно"
 
-#: includes/class-sch-settings.php:170
+#: includes/class-sch-settings.php:233
 msgid "Line numbers"
 msgstr "Номера строк"
 
-#: includes/class-sch-settings.php:174
+#: includes/class-sch-settings.php:237
 msgid "Copy-to-clipboard button"
 msgstr "Кнопка копирования в буфер обмена"
 
-#: includes/class-sch-settings.php:179
+#: includes/class-sch-settings.php:242
 msgid "Unmarked blocks"
 msgstr "Неразмеченные блоки"
 
-#: includes/class-sch-settings.php:183
+#: includes/class-sch-settings.php:246
 msgid "Also apply to <pre> blocks with no language class"
 msgstr "Применять также к блокам <pre> без класса языка"
 
-#: includes/class-sch-settings.php:185
+#: includes/class-sch-settings.php:248
 msgid "Off by default: a <pre> block with no class could be genuinely non-code preformatted text, not a code sample."
 msgstr "По умолчанию выключено: блок <pre> без класса может быть обычным предварительно отформатированным текстом, а не примером кода."
 
-#: includes/class-sch-settings.php:204
+#: includes/class-sch-settings.php:268
 msgid "Supported languages & how to use them"
 msgstr "Поддерживаемые языки и как ими пользоваться"
 
-#: includes/class-sch-settings.php:205
+#: includes/class-sch-settings.php:269
 msgid "Write a code block using either of the two shapes below, anywhere in a post or page (the block editor's \"Custom HTML\" block, or the Text/Code tab of the Classic editor — not the Visual editor, which reformats raw HTML). Both are recognized automatically; no shortcode needed."
 msgstr "Напишите блок кода в одном из двух форматов ниже, в любом месте записи или страницы (блок «Произвольный HTML» в блочном редакторе, либо вкладка «Текст»/«Код» в классическом редакторе — не визуальный редактор, который переформатирует необработанный HTML). Оба формата распознаются автоматически, без шорткода."
 
-#: includes/class-sch-settings.php:207
+#: includes/class-sch-settings.php:271
 msgid "Option 1: the old lang:xxx decode:true markup"
 msgstr "Вариант 1: старая разметка lang:xxx decode:true"
 
-#: includes/class-sch-settings.php:208
+#: includes/class-sch-settings.php:272
 msgid "What every existing post on this site already uses. Just a class on the <pre> tag — this plugin rewrites it to Prism.js markup automatically, every time the page is viewed."
 msgstr "То, что уже используется во всех существующих записях этого сайта. Просто класс на теге <pre> — этот плагин автоматически преобразует его в разметку Prism.js при каждом просмотре страницы."
 
-#: includes/class-sch-settings.php:211
+#: includes/class-sch-settings.php:275
 msgid "Option 2: modern Prism.js markup"
 msgstr "Вариант 2: современная разметка Prism.js"
 
-#: includes/class-sch-settings.php:212
+#: includes/class-sch-settings.php:276
 msgid "Also recognized, untouched — use this for a new post if you'd rather write it directly in the shape Prism itself expects."
 msgstr "Также распознаётся, без изменений — используйте это для новой записи, если хотите писать сразу в формате, который ожидает сам Prism."
 
-#: includes/class-sch-settings.php:215
+#: includes/class-sch-settings.php:279
 msgid "Plain output / console text, no coloring"
 msgstr "Обычный вывод / текст консоли, без подсветки"
 
-#: includes/class-sch-settings.php:216
+#: includes/class-sch-settings.php:280
 msgid "For command output or a terminal transcript where nothing should be colored — still gets line numbers and the copy button if those are enabled above."
 msgstr "Для вывода команд или протокола терминала, где ничего не нужно подсвечивать — номера строк и кнопка копирования всё равно применяются, если включены выше."
 
-#: includes/class-sch-settings.php:219
+#: includes/class-sch-settings.php:283
 msgid "Inside either shape, escape any <, > and & in the code itself as &lt;, &gt; and &amp; — the block is still HTML underneath, so unescaped angle brackets would be parsed as real tags rather than shown as text."
 msgstr "В любом из форматов экранируйте символы <, > и & в самом коде как &lt;, &gt; и &amp; — блок по-прежнему является HTML, поэтому неэкранированные угловые скобки будут восприняты как настоящие теги, а не показаны как текст."
 
-#: includes/class-sch-settings.php:221
+#: includes/class-sch-settings.php:285
 msgid "Most popular languages"
 msgstr "Самые популярные языки"
 
-#: includes/class-sch-settings.php:222
+#: includes/class-sch-settings.php:286
 msgid "Use either the old-style token (after lang:) or the modern id (after language- in a <code> class) — both work. This isn't the full list: any language Prism.js supports works the same way, even if it isn't in this table — see the link below."
 msgstr "Используйте либо старый токен (после lang:), либо современный идентификатор (после language- в классе <code>) — оба варианта работают. Это не полный список: любой язык, поддерживаемый Prism.js, работает точно так же, даже если его нет в этой таблице — см. ссылку ниже."
 
-#: includes/class-sch-settings.php:226
-#: assets/editor.js:62
-#: assets/editor.js:107
+#: includes/class-sch-settings.php:290
+#: assets/editor.js:63
+#: assets/editor.js:202
 msgid "Language"
 msgstr "Язык"
 
-#: includes/class-sch-settings.php:227
+#: includes/class-sch-settings.php:291
 msgid "Old-style: lang:xxx"
 msgstr "Старый стиль: lang:xxx"
 
-#: includes/class-sch-settings.php:228
+#: includes/class-sch-settings.php:292
 msgid "Modern: language-xxx"
 msgstr "Современный: language-xxx"
 
 #. translators: %s: link to Prism.js's own supported-languages list
-#: includes/class-sch-settings.php:245
+#: includes/class-sch-settings.php:309
 #, php-format
 msgid "Full list of every supported language: %s"
 msgstr "Полный список всех поддерживаемых языков: %s"
 
-#: slim-code-highlight.php:91
+#: slim-code-highlight.php:96
 msgid "Settings"
 msgstr "Настройки"
 
-#: assets/editor.js:39
+#: assets/editor.js:40
 msgid "Other…"
 msgstr "Другой…"
 
-#: assets/editor.js:72
+#: assets/editor.js:73
 msgid "Prism language id"
 msgstr "Идентификатор языка Prism"
 
-#: assets/editor.js:73
+#: assets/editor.js:74
 msgid "Any id from prismjs.com/#supported-languages, e.g. \"kotlin\" or \"dockerfile\"."
 msgstr "Любой идентификатор с prismjs.com/#supported-languages, например «kotlin» или «dockerfile»."
 
-#: assets/editor.js:83
+#: assets/editor.js:163
 msgid "Code (Slim Highlight)"
 msgstr "Код (Slim Highlight)"
 
-#: assets/editor.js:84
+#: assets/editor.js:164
 msgid "A code block with a language picker and a live Prism.js preview."
 msgstr "Блок кода с выбором языка и live-предпросмотром на Prism.js."
 
-#: assets/editor.js:130
-#: assets/editor.js:136
+#: assets/editor.js:217
+#: assets/editor.js:223
 msgid "Code"
 msgstr "Код"
 
-#: assets/editor.js:135
+#: assets/editor.js:222
 msgid "Paste or type your code…"
 msgstr "Вставьте или введите код…"
 
-#: assets/editor.js:140
+#: assets/editor.js:227
 msgid "Preview"
 msgstr "Предпросмотр"
+
+#. translators: %d: number of lines in the code block
+#: includes/class-sch-frontend.php:168
+#, php-format
+msgid "Show all %d lines"
+msgstr "Показать все строки (%d)"
+
+#: includes/class-sch-frontend.php:169
+msgid "Collapse"
+msgstr "Свернуть"
+
+#: includes/class-sch-settings.php:211
+msgid "Long blocks"
+msgstr "Длинные блоки"
+
+#: includes/class-sch-settings.php:214
+msgid "lines shown, then:"
+msgstr "строк показывать, затем:"
+
+#: includes/class-sch-settings.php:218
+msgid "a \"Show all\" button opens the rest"
+msgstr "кнопка «Показать все» открывает остальное"
+
+#: includes/class-sch-settings.php:222
+msgid "the block scrolls inside itself"
+msgstr "блок прокручивается внутри себя"
+
+#: includes/class-sch-settings.php:225
+msgid "A block with more lines than this is cut to that many lines. 0 shows every block in full. A block is only cut when it would hide at least 5 lines."
+msgstr "Блок, в котором строк больше этого числа, обрезается до этого количества строк. 0 — показывать все блоки целиком. Блок обрезается, только если будут скрыты не меньше 5 строк."

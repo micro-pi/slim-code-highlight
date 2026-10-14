@@ -12,6 +12,8 @@ $options = array(
 	'sch_line_numbers',
 	'sch_copy_button',
 	'sch_plain_pre',
+	'sch_max_lines',
+	'sch_long_mode',
 );
 
 foreach ( $options as $option ) {

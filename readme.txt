@@ -1,7 +1,7 @@
 === Slim Code Highlight ===
 Requires at least: 5.9
 Requires PHP: 7.4
-Version: 1.4.1
+Version: 1.5.1
 License: GPL v2 or later
 
 Syntax-highlights code inside `<pre>` blocks with Prism.js — including
@@ -26,6 +26,11 @@ content edits needed. One library only. No bloat.
   blocks with no class at all
 * Optional line numbers and a copy-to-clipboard button (Prism's own
   official plugins)
+* Long blocks (off by default): set a number of lines and any block with
+  clearly more lines than that is cut to that many. Choose between a
+  "Show all N lines" / "Collapse" button (the cut edge fades out) and a
+  block that simply scrolls inside itself — a 500-line listing no longer
+  has to be scrolled past
 * 8 built-in Prism themes to choose from
 * Font size, as a percentage of the theme's own size (100% / 90% / 80% / 70%)
 * Settings screen includes a supported-languages reference table and
@@ -40,6 +45,24 @@ content edits needed. One library only. No bloat.
 
 == Design notes ==
 
+* **Long blocks are cut by the server and refined by a script, so the page
+  does not jump.** The line count comes from the saved block, and the
+  block gets `sch-long` plus the limit as a `--sch-lines` style value; the
+  stylesheet then cuts it at about that many lines and lets it scroll
+  inside itself, so a visitor whose script did not run loses nothing and
+  the page reserves the right height from the first paint. `collapse.js`
+  then measures the real line height and padding of the chosen theme and
+  font size, fades the cut edge and reveals the toggle button. A block is
+  cut only when at least 5 lines would be hidden: a button that hides two
+  lines is more of a nuisance than the two lines. The toggle is a plain
+  button after the block (so it works with Prism's copy-button wrapper) and
+  collapsing a block far above the viewport scrolls back to its top.
+* **The scrolling mode needs no script at all.** It is the same cut the
+  stylesheet already makes before `collapse.js` runs, so choosing it loads
+  nothing extra and adds no button. The toggle button sets its own text and
+  background colors in every state (and outranks the theme's `button:hover`
+  rule): a theme that gave hovered buttons white text on a light button
+  made the label vanish when it was left to inherit.
 * **The old markup is translated on the fly, on every request, via a
   `the_content` filter — not a one-time database rewrite.** Turning the
   plugin off (or changing a setting) instantly reverts every post's

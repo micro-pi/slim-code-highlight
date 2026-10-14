@@ -126,6 +126,19 @@ class SCH_Frontend {
 		if ( $options['line_numbers'] ) {
 			$keep[] = 'line-numbers';
 		}
+
+		// A block much longer than the chosen limit: cut it to that many
+		// lines, with a button (revealed by assets/collapse.js) to open it.
+		// Blocks only a few lines over the limit are left whole — hiding
+		// two lines behind a button is more annoying than showing them.
+		$lines     = substr_count( rtrim( $inner, "\r\n" ), "\n" ) + 1;
+		$max_lines = (int) $options['max_lines'];
+		$is_long   = $max_lines > 0 && ( $lines - $max_lines ) >= 5;
+		$scroll    = 'scroll' === $options['long_mode'];
+		if ( $is_long ) {
+			$keep[] = 'sch-long';
+			$keep[] = $scroll ? 'sch-scroll' : 'sch-collapsible';
+		}
 		$new_class = implode( ' ', array_unique( $keep ) );
 
 		if ( '' !== $existing_class ) {
@@ -134,11 +147,29 @@ class SCH_Frontend {
 			$new_attrs = rtrim( $attrs ) . ' class="' . esc_attr( $new_class ) . '"';
 		}
 
-		if ( $already_prism ) {
-			return '<pre' . $new_attrs . '>' . $inner . '</pre>';
+		if ( $is_long ) {
+			// The limit goes into the block itself, so the page can reserve
+			// the cut height before any script runs.
+			if ( preg_match( '/\bstyle\s*=\s*(["\'])(.*?)\1/i', $new_attrs ) ) {
+				$new_attrs = preg_replace( '/\bstyle\s*=\s*(["\'])(.*?)\1/i', 'style="${2};--sch-lines:' . $max_lines . '"', $new_attrs, 1 );
+			} else {
+				$new_attrs = rtrim( $new_attrs ) . ' style="--sch-lines:' . $max_lines . '"';
+			}
 		}
 
-		return '<pre' . $new_attrs . '><code class="language-' . esc_attr( $lang ) . '">' . $inner . '</code></pre>';
+		if ( $already_prism ) {
+			$block = '<pre' . $new_attrs . '>' . $inner . '</pre>';
+		} else {
+			$block = '<pre' . $new_attrs . '><code class="language-' . esc_attr( $lang ) . '">' . $inner . '</code></pre>';
+		}
+
+		if ( $is_long && ! $scroll ) {
+			/* translators: %d: number of lines in the code block */
+			$more   = sprintf( __( 'Show all %d lines', 'slim-code-highlight' ), $lines );
+			$block .= '<button type="button" class="sch-toggle" hidden aria-expanded="false" data-less="' . esc_attr__( 'Collapse', 'slim-code-highlight' ) . '">' . esc_html( $more ) . '</button>';
+		}
+
+		return $block;
 	}
 
 	/**
@@ -214,6 +245,9 @@ class SCH_Frontend {
 		}
 
 		$suffix = ( defined( 'SCRIPT_DEBUG' ) && SCRIPT_DEBUG ) ? '' : '.min';
+		if ( $options['max_lines'] > 0 && 'collapse' === $options['long_mode'] ) {
+			wp_enqueue_script( 'slim-code-highlight', SCH_URL . "assets/collapse{$suffix}.js", array(), SCH_VERSION, true );
+		}
 		wp_enqueue_style( 'slim-code-highlight', SCH_URL . "assets/style{$suffix}.css", array( 'sch-prism-theme' ), SCH_VERSION );
 
 		// 100 means "theme default" — no override needed, so nothing is
